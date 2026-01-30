@@ -1,0 +1,479 @@
+
+:root {
+    --bg-color: #fdfcf8;
+    --primary-color: #2f6f4e;
+    --accent-red: #e07a5f;
+    --accent-blue: #7aa8c9;
+    --border-soft: #d4d1c6;
+    --text-main: #4a4a4a;
+    --text-light: #888;
+    --danger: #d93025;
+    /* Google form red / BeClass red */
+    --beclass-bg: #fffcf0;
+    /* BeClass 米黃色背景 */
+    --beclass-border: #dcd6bc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #f0efe9;
+    background-image:
+        linear-gradient(#e7e5da 1px, transparent 1px),
+        linear-gradient(90deg, #e7e5da 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -8px -8px;
+    color: var(--text-main);
+}
+
+.page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border-radius: 18px;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+/* 英文輔助字樣式 */
+.en {
+    font-size: 0.85em;
+    color: #8fa398;
+    font-weight: 400;
+    margin-left: 4px;
+    font-family: -apple-system, sans-serif;
+}
+
+/* Header */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 28px 16px;
+    background: linear-gradient(135deg, #fef5d4, #eef7f1);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.page-header-main {
+    flex: 1 1 260px;
+}
+
+.page-title-line1 {
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 0.16em;
+    color: var(--primary-color);
+    font-size: 13px;
+}
+
+.page-title-line2 {
+    margin-top: 4px;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.page-header-side {
+    flex: 0 0 auto;
+    min-width: 220px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px dashed var(--accent-blue);
+    font-size: 13px;
+}
+
+.badge-term {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background-color: var(--accent-red);
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+/* Body Layout */
+.page-body {
+    padding: 20px 24px 26px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+    gap: 24px;
+}
+
+/* Left Column: Poster & Intro */
+.poster-wrapper {
+    margin-bottom: 20px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.poster-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.info-box {
+    background-color: #fffcf0;
+    border: 1px solid #f0e6c6;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.info-intro {
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.notice-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+.notice-list li {
+    margin-bottom: 4px;
+}
+
+/* --- Right Column: BeClass Style Form --- */
+.beclass-form {
+    border: 1px solid #dcd6bc;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.beclass-header {
+    background-color: #fffcf0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #dcd6bc;
+    font-weight: 700;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-text {
+    color: var(--danger);
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.form-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row:last-child {
+    border-bottom: none;
+}
+
+.form-label-col {
+    flex: 0 0 110px;
+    background-color: #fffcf0;
+    padding: 15px 10px;
+    text-align: right;
+    font-weight: 700;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #eee;
+}
+
+.required-mark {
+    color: #d00;
+    margin-right: 2px;
+}
+
+.form-input-col {
+    flex: 1;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.input-text {
+    width: 100%;
+    max-width: 300px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+/* Class Selection */
+.radio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.radio-item input {
+    margin: 0;
+}
+
+/* Course List */
+.course-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.course-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.course-item input {
+    margin-top: 4px;
+}
+
+.course-text {
+    display: block;
+}
+
+.rem-count {
+    color: var(--danger);
+    font-size: 0.9em;
+    margin-left: 6px;
+}
+
+.price-tag {
+    color: #888;
+    font-size: 0.9em;
+    margin-left: 4px;
+}
+
+/* Dance Supplies */
+.dance-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Buttons */
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .radio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideIn 0.3s ease-out;
+    border-left: 4px solid #2f6f4e;
+}
+
+.toast.success {
+    border-left-color: #2f6f4e;
+}
+
+.toast.error {
+    border-left-color: #d93025;
+}
+
+.toast.warning {
+    border-left-color: #f9ab00;
+}
+
+.toast-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.toast-message {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-line;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Video Modal Styles */
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.video-modal-overlay.active {
+    display: flex;
+}
+
+.video-modal {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal video {
+    max-width: 800px;
+    max-height: 80vh;
+    width: 100%;
+    display: block;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.video-modal-close:hover {
+    transform: scale(1.1);
+}
+
+.video-modal-title {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.video-btn {
+    background: linear-gradient(135deg, var(--accent-blue), #5a8eb8);
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.video-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(122, 168, 201, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

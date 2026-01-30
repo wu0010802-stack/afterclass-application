@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ivy After-School Arts – 114 下藝童趣 課後才藝報名</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Video Modal -->
+    <div class="video-modal-overlay" id="videoModal">
+        <div class="video-modal">
+            <span class="video-modal-title" id="videoModalTitle"></span>
+            <button class="video-modal-close" onclick="closeVideoModal()">×</button>
+            <div id="videoContainer" style="width: 100%; margin-top: 15px;">
+                <video id="videoPlayer" controls style="width: 100%; border-radius: 8px;">
+                    <source src="" type="video/mp4">
+                    您的瀏覽器不支援影片播放
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="page-header">
+            <div class="page-header-main">
+                <div class="page-title-line1">IVY AFTER-SCHOOL ARTS PROGRAM</div>
+                <div class="page-title-line2">114 下藝童趣｜課後才藝報名</div>
+            </div>
+            <aside class="page-header-side">
+                <div class="badge-term">114 下學期</div>
+                <div>活動日期：2026-02-23</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">對象：本園在學幼兒</div>
+            </aside>
+        </header>
+
+        <main class="page-body">
+            <!-- Registration Time Notice -->
+            <div id="registrationNotice"
+                style="margin: 20px; padding: 15px; background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-left: 4px solid #f9ab00; border-radius: 8px; display: none;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 24px;">⏰</span>
+                    <div>
+                        <strong style="color: #856404;">報名尚未開放</strong><br>
+                        <span style="font-size: 14px; color: #856404;">報名開始時間：<strong>2026-02-02 16:00</strong> | 距離開放還有
+                            <strong id="daysRemaining">--</strong> 天</span>
+                    </div>
+                </div>
+            </div>
+
+            <form>
+                <div class="grid-layout">
+
+                    <div class="col-left">
+                        <div class="poster-wrapper">
+                            <img src="{{ url_for('static', filename='images/poster.png') }}" alt="Poster">
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-intro">
+                                爸比媽咪：<br>
+                                2~5歲的孩子對於自我探索的心很強烈，也是孩子成長的重要因素之一，課後才藝就是一個很好的機會哦！<br>
+                                孩子和同儕一起互動學習是最開心的時刻了，樂在其中的學習也能玩出潛能！讓我們一起發掘孩子的能力吧！
+                            </div>
+                            <hr style="border:0; border-top:1px dashed #e0d6b6; margin:10px 0;">
+                            <ul class="notice-list">
+                                <li>本學期課後才藝採線上報名，額滿為止。</li>
+                                <li>有搭娃娃車的寶貝，上才藝課當天<strong>煩請家長自行接回</strong>。</li>
+                                <li>若人數未達最低標準，則不予開課。</li>
+                                <li>如因疫情等不可抗力因素停課，將依規定比例退費。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-right">
+
+                        <div class="beclass-form">
+                            <div class="beclass-header">
+                                <span>114 下藝童趣 (2026-02-23)</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>幼兒姓名 <span class="en">Child's Name</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <input type="text" id="studentName" class="input-text" placeholder="請輸入幼兒姓名">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>幼兒生日 <span class="en">Birthday</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <input type="date" id="studentBirthday" class="input-text" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>寶貝班級 <span class="en">Class</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="radio-grid">
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="天堂鳥 Bird of Paradise"> 天堂鳥 Bird of Paradise</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="茉莉 Jasmine">
+                                            茉莉 Jasmine</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="玫瑰 Rose"> 玫瑰
+                                            Rose</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="薔薇 Multiflora"> 薔薇 Multiflora</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="百合 Lily"> 百合
+                                            Lily</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="櫻花 Cherry Blossom"> 櫻花 Cherry Blossom</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="芙蓉 Hibiscus">
+                                            芙蓉 Hibiscus</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="牡丹 Peony"> 牡丹
+                                            Peony</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="向日葵 Sunflower"> 向日葵 Sunflower</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="滿天星 Baby's Breath"> 滿天星 Baby's Breath</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>才藝課班別 <span class="en">Courses</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="course-list-vertical" id="courseList">
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="幼兒感統 (限小幼班)" data-price="8000">
+                                            <span class="course-text">
+                                                幼兒感統 (限小幼班) <span class="price-tag">20堂 $8000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="兒童舞蹈 (大中小幼班)" data-price="4400">
+                                            <span class="course-text">
+                                                兒童舞蹈 (大中小幼班) <span class="price-tag">20堂 $4400</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="足球 (中大班)" data-price="5000">
+                                            <span class="course-text">
+                                                足球 (中大班) <span class="price-tag">20堂 $5000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="足球 (中小班)" data-price="5000">
+                                            <span class="course-text">
+                                                足球 (中小班) <span class="price-tag">20堂 $5000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="3C3Q積木與桌遊 (大中小)" data-price="5200">
+                                            <span class="course-text">
+                                                3C3Q積木與桌遊 (大中小) <span class="price-tag">20堂 $5200</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="幼兒美術 (大中小幼)" data-price="4400">
+                                            <span class="course-text">
+                                                幼兒美術 (大中小幼) <span class="price-tag">20堂 $4400</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="菁英美語 (限大班)" data-price="7000">
+                                            <span class="course-text">
+                                                菁英美語 (限大班) <span class="price-tag">40堂 $7000</span>
+                                                <span class="rem-count">(每週2次，教材費另計$1500)</span>
+                                            </span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    舞蹈班代辦品 <span class="en">Supplies</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="dance-grid" id="suppliesList">
+                                        <label class="course-item"><input type="checkbox" value="全套舞蹈服裝"
+                                                data-price="1400"> 全套舞蹈服裝 1400元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞衣" data-price="700">
+                                            舞衣 700元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞鞋" data-price="250">
+                                            舞鞋 250元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞襪" data-price="150">
+                                            舞襪 150元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞袋" data-price="300">
+                                            舞袋 300元</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <button type="button" class="btn-submit" id="submitBtn">
+                            確認報名資料 <span style="font-size:0.8em; font-weight:400;">Submit</span>
+                        </button>
+
+                        <div style="display:flex; gap:10px; margin-top:15px;">
+                            <button type="button"
+                                onclick="window.open('{{ url_for('main.query_page') }}', 'QueryWindow', 'width=900,height=800,scrollbars=yes')"
+                                style="flex:1; padding:10px; font-size:14px; font-weight:600; cursor:pointer; background:#fff; color:#2f6f4e; border:2px solid #2f6f4e; border-radius:6px; transition: all 0.3s;"
+                                onmouseover="this.style.background='#2f6f4e'; this.style.color='#fff'"
+                                onmouseout="this.style.background='#fff'; this.style.color='#2f6f4e'">
+                                🔍 查詢/修改報名
+                            </button>
+                            <button type="button"
+                                onclick="window.location.href='https://www.ivykidschool.com/%E4%BB%81%E6%AD%A6%E6%A0%A1%E4%BB%8B%E7%B4%B9'"
+                                style="flex:1; padding:10px; font-size:14px; font-weight:600; cursor:pointer; background:#fff; color:#e07a5f; border:2px solid #e07a5f; border-radius:6px; transition: all 0.3s;"
+                                onmouseover="this.style.background='#e07a5f'; this.style.color='#fff'"
+                                onmouseout="this.style.background='#fff'; this.style.color='#e07a5f'">
+                                ※ 與承辦人員聯繫
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="footer-note" style="text-align:center; margin-top:30px; color:#aaa; font-size:12px;">
+                <p>常春藤教育機構 Ivy Educational Institution © 2026</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

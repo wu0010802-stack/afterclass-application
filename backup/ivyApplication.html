@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ivy After-School Arts – 114 下藝童趣 課後才藝報名</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #fdfcf8;
+            --primary-color: #2f6f4e;
+            --accent-red: #e07a5f;
+            --accent-blue: #7aa8c9;
+            --border-soft: #d4d1c6;
+            --text-main: #4a4a4a;
+            --text-light: #888;
+            --danger: #d93025;
+            /* Google form red / BeClass red */
+            --beclass-bg: #fffcf0;
+            /* BeClass 米黃色背景 */
+            --beclass-border: #dcd6bc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f0efe9;
+            background-image:
+                linear-gradient(#e7e5da 1px, transparent 1px),
+                linear-gradient(90deg, #e7e5da 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: -8px -8px;
+            color: var(--text-main);
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            /* 稍微加寬以容納表格 */
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            border-radius: 18px;
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        /* 英文輔助字樣式 */
+        .en {
+            font-size: 0.85em;
+            color: #8fa398;
+            font-weight: 400;
+            margin-left: 4px;
+            font-family: -apple-system, sans-serif;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            padding: 20px 28px 16px;
+            background: linear-gradient(135deg, #fef5d4, #eef7f1);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .page-header-main {
+            flex: 1 1 260px;
+        }
+
+        .page-title-line1 {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 0.16em;
+            color: var(--primary-color);
+            font-size: 13px;
+        }
+
+        .page-title-line2 {
+            margin-top: 4px;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .page-header-side {
+            flex: 0 0 auto;
+            min-width: 220px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px dashed var(--accent-blue);
+            font-size: 13px;
+        }
+
+        .badge-term {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 99px;
+            background-color: var(--accent-red);
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        /* Body Layout */
+        .page-body {
+            padding: 20px 24px 26px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+            /* 左窄右寬，配合表格 */
+            gap: 24px;
+        }
+
+        /* Left Column: Poster & Intro */
+        .poster-wrapper {
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .info-box {
+            background-color: #fffcf0;
+            border: 1px solid #f0e6c6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .info-intro {
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .notice-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .notice-list li {
+            margin-bottom: 4px;
+        }
+
+        /* --- Right Column: BeClass Style Form --- */
+
+        /* 仿 BeClass 的表格結構 */
+        .beclass-form {
+            border: 1px solid #dcd6bc;
+            background-color: #fff;
+            font-size: 15px;
+        }
+
+        .beclass-header {
+            background-color: #fffcf0;
+            /* 米黃色頂部 */
+            padding: 10px 15px;
+            border-bottom: 1px solid #dcd6bc;
+            font-weight: 700;
+            color: #4a4a4a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-text {
+            color: var(--danger);
+            font-weight: 400;
+            font-size: 0.9em;
+        }
+
+        .form-row {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-row:last-child {
+            border-bottom: none;
+        }
+
+        /* 左側標題欄 */
+        .form-label-col {
+            flex: 0 0 110px;
+            background-color: #fffcf0;
+            /* 米黃色 */
+            padding: 15px 10px;
+            text-align: right;
+            font-weight: 700;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-right: 1px solid #eee;
+        }
+
+        .required-mark {
+            color: #d00;
+            margin-right: 2px;
+        }
+
+        /* 右側內容欄 */
+        .form-input-col {
+            flex: 1;
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        /* 輸入框樣式 */
+        .input-text {
+            width: 100%;
+            max-width: 300px;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        /* 班級選擇 (Radio Grid) */
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 兩欄排列 */
+            gap: 8px 12px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .radio-item input {
+            margin: 0;
+        }
+
+        /* 課程列表 (Vertical List) */
+        .course-list-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .course-item input {
+            margin-top: 4px;
+        }
+
+        .course-text {
+            display: block;
+        }
+
+        .rem-count {
+            color: var(--danger);
+            font-size: 0.9em;
+            margin-left: 6px;
+        }
+
+        .price-tag {
+            color: #888;
+            font-size: 0.9em;
+            margin-left: 4px;
+        }
+
+        /* 舞蹈加購 */
+        .dance-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* 按鈕 */
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Toast Notification Styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            min-width: 300px;
+            max-width: 500px;
+            padding: 16px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease-out;
+            border-left: 4px solid #2f6f4e;
+        }
+
+        .toast.success {
+            border-left-color: #2f6f4e;
+        }
+
+        .toast.error {
+            border-left-color: #d93025;
+        }
+
+        .toast.warning {
+            border-left-color: #f9ab00;
+        }
+
+        .toast-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .toast-message {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            white-space: pre-line;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toast-close:hover {
+            color: #333;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        /* Video Modal Styles */
+        .video-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .video-modal-overlay.active {
+            display: flex;
+        }
+
+        .video-modal {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-modal video {
+            max-width: 800px;
+            max-height: 80vh;
+            width: 100%;
+            display: block;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .video-modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        .video-modal-title {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .video-btn {
+            background: linear-gradient(135deg, var(--accent-blue), #5a8eb8);
+            color: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .video-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(122, 168, 201, 0.4);
+        }
+
+        .video-btn.no-video {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Video Modal -->
+    <div class="video-modal-overlay" id="videoModal">
+        <div class="video-modal">
+            <span class="video-modal-title" id="videoModalTitle"></span>
+            <button class="video-modal-close" onclick="closeVideoModal()">×</button>
+            <div id="videoContainer" style="width: 100%; margin-top: 15px;">
+                <video id="videoPlayer" controls style="width: 100%; border-radius: 8px;">
+                    <source src="" type="video/mp4">
+                    您的瀏覽器不支援影片播放
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <header class="page-header">
+            <div class="page-header-main">
+                <div class="page-title-line1">IVY AFTER-SCHOOL ARTS PROGRAM</div>
+                <div class="page-title-line2">114 下藝童趣｜課後才藝報名</div>
+            </div>
+            <aside class="page-header-side">
+                <div class="badge-term">114 下學期</div>
+                <div>活動日期：2026-02-23</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">對象：本園在學幼兒</div>
+            </aside>
+        </header>
+
+        <main class="page-body">
+            <!-- Registration Time Notice -->
+            <div id="registrationNotice"
+                style="margin: 20px; padding: 15px; background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-left: 4px solid #f9ab00; border-radius: 8px; display: none;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 24px;">⏰</span>
+                    <div>
+                        <strong style="color: #856404;">報名尚未開放</strong><br>
+                        <span style="font-size: 14px; color: #856404;">報名開始時間：<strong>2026-02-02 16:00</strong> | 距離開放還有
+                            <strong id="daysRemaining">--</strong> 天</span>
+                    </div>
+                </div>
+            </div>
+
+            <form>
+                <div class="grid-layout">
+
+                    <div class="col-left">
+                        <div class="poster-wrapper">
+                            <img src="截圖 2026-01-28 上午9.33.41.png" alt="Poster">
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-intro">
+                                爸比媽咪：<br>
+                                2~5歲的孩子對於自我探索的心很強烈，也是孩子成長的重要因素之一，課後才藝就是一個很好的機會哦！<br>
+                                孩子和同儕一起互動學習是最開心的時刻了，樂在其中的學習也能玩出潛能！讓我們一起發掘孩子的能力吧！
+                            </div>
+                            <hr style="border:0; border-top:1px dashed #e0d6b6; margin:10px 0;">
+                            <ul class="notice-list">
+                                <li>本學期課後才藝採線上報名，額滿為止。</li>
+                                <li>有搭娃娃車的寶貝，上才藝課當天<strong>煩請家長自行接回</strong>。</li>
+                                <li>若人數未達最低標準，則不予開課。</li>
+                                <li>如因疫情等不可抗力因素停課，將依規定比例退費。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-right">
+
+                        <div class="beclass-form">
+                            <div class="beclass-header">
+                                <span>114 下藝童趣 (2026-02-23)</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>幼兒姓名 <span class="en">Child's Name</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <input type="text" id="studentName" class="input-text" placeholder="請輸入幼兒姓名">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>寶貝班級 <span class="en">Class</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="radio-grid">
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="天堂鳥 Bird of Paradise"> 天堂鳥 Bird of Paradise</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="茉莉 Jasmine">
+                                            茉莉 Jasmine</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="玫瑰 Rose"> 玫瑰
+                                            Rose</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="薔薇 Multiflora"> 薔薇 Multiflora</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="百合 Lily"> 百合
+                                            Lily</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="櫻花 Cherry Blossom"> 櫻花 Cherry Blossom</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="芙蓉 Hibiscus">
+                                            芙蓉 Hibiscus</label>
+                                        <label class="radio-item"><input type="radio" name="class" value="牡丹 Peony"> 牡丹
+                                            Peony</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="向日葵 Sunflower"> 向日葵 Sunflower</label>
+                                        <label class="radio-item"><input type="radio" name="class"
+                                                value="滿天星 Baby's Breath"> 滿天星 Baby's Breath</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    <span class="required-mark">※</span>才藝課班別 <span class="en">Courses</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="course-list-vertical" id="courseList">
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="幼兒感統 (限小幼班)" data-price="8000">
+                                            <span class="course-text">
+                                                幼兒感統 (限小幼班) <span class="price-tag">20堂 $8000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="兒童舞蹈 (大中小幼班)" data-price="4400">
+                                            <span class="course-text">
+                                                兒童舞蹈 (大中小幼班) <span class="price-tag">20堂 $4400</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="足球 (中大班)" data-price="5000">
+                                            <span class="course-text">
+                                                足球 (中大班) <span class="price-tag">20堂 $5000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="足球 (中小班)" data-price="5000">
+                                            <span class="course-text">
+                                                足球 (中小班) <span class="price-tag">20堂 $5000</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="3C3Q積木與桌遊 (大中小)" data-price="5200">
+                                            <span class="course-text">
+                                                3C3Q積木與桌遊 (大中小) <span class="price-tag">20堂 $5200</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="幼兒美術 (大中小幼)" data-price="4400">
+                                            <span class="course-text">
+                                                幼兒美術 (大中小幼) <span class="price-tag">20堂 $4400</span>
+                                                <span class="rem-count">(每週1次，1次1小時)</span>
+                                            </span>
+                                        </label>
+
+
+
+                                        <label class="course-item">
+                                            <input type="checkbox" value="菁英美語 (限大班)" data-price="7000">
+                                            <span class="course-text">
+                                                菁英美語 (限大班) <span class="price-tag">40堂 $7000</span>
+                                                <span class="rem-count">(每週2次，教材費另計$1500)</span>
+                                            </span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label-col">
+                                    舞蹈班代辦品 <span class="en">Supplies</span>
+                                </div>
+                                <div class="form-input-col">
+                                    <div class="dance-grid" id="suppliesList">
+                                        <label class="course-item"><input type="checkbox" value="全套舞蹈服裝"
+                                                data-price="1400"> 全套舞蹈服裝 1400元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞衣" data-price="700">
+                                            舞衣 700元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞鞋" data-price="250">
+                                            舞鞋 250元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞襪" data-price="150">
+                                            舞襪 150元</label>
+                                        <label class="course-item"><input type="checkbox" value="舞袋" data-price="300">
+                                            舞袋 300元</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <button type="button" class="btn-submit" id="submitBtn">
+                            確認報名資料 <span style="font-size:0.8em; font-weight:400;">Submit</span>
+                        </button>
+
+                        <div style="display:flex; gap:10px; margin-top:15px;">
+                            <button type="button"
+                                onclick="window.open('query.html', 'QueryWindow', 'width=900,height=800,scrollbars=yes')"
+                                style="flex:1; padding:10px; font-size:14px; font-weight:600; cursor:pointer; background:#fff; color:#2f6f4e; border:2px solid #2f6f4e; border-radius:6px; transition: all 0.3s;"
+                                onmouseover="this.style.background='#2f6f4e'; this.style.color='#fff'"
+                                onmouseout="this.style.background='#fff'; this.style.color='#2f6f4e'">
+                                🔍 查詢/修改報名
+                            </button>
+                            <button type="button"
+                                onclick="window.location.href='https://www.ivykidschool.com/%E4%BB%81%E6%AD%A6%E6%A0%A1%E4%BB%8B%E7%B4%B9'"
+                                style="flex:1; padding:10px; font-size:14px; font-weight:600; cursor:pointer; background:#fff; color:#e07a5f; border:2px solid #e07a5f; border-radius:6px; transition: all 0.3s;"
+                                onmouseover="this.style.background='#e07a5f'; this.style.color='#fff'"
+                                onmouseout="this.style.background='#fff'; this.style.color='#e07a5f'">
+                                ※ 與承辦人員聯繫
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="footer-note" style="text-align:center; margin-top:30px; color:#aaa; font-size:12px;">
+                <p>常春藤教育機構 Ivy Educational Institution © 2026</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Registration time settings (fetched from server)
+        let REGISTRATION_START_DATE = null;
+        let REGISTRATION_END_DATE = null;
+
+        // Fetch registration time settings from server
+        async function fetchRegistrationTime() {
+            try {
+                const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+                const response = await fetch(`${API_BASE}/api/settings/registration-time`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.start) {
+                        REGISTRATION_START_DATE = new Date(data.start);
+                    }
+                    if (data.end) {
+                        REGISTRATION_END_DATE = new Date(data.end);
+                    }
+                    checkRegistrationTime();
+                }
+            } catch (error) {
+                console.error('Failed to fetch registration time:', error);
+                // Use defaults if API fails
+                REGISTRATION_START_DATE = new Date('2026-02-02T16:00:00');
+                REGISTRATION_END_DATE = new Date('2026-02-20T23:59:00');
+                checkRegistrationTime();
+            }
+        }
+
+        function checkRegistrationTime() {
+            const now = new Date();
+            const notice = document.getElementById('registrationNotice');
+            const daysRemainingEl = document.getElementById('daysRemaining');
+
+            if (!REGISTRATION_START_DATE || !REGISTRATION_END_DATE) {
+                notice.style.display = 'none';
+                return;
+            }
+
+            if (now < REGISTRATION_START_DATE) {
+                const daysLeft = Math.ceil((REGISTRATION_START_DATE - now) / (1000 * 60 * 60 *
+                    24)); daysRemainingEl.textContent = daysLeft; notice.style.display = 'block';
+                notice.querySelector('strong').textContent = '報名尚未開放';
+            } else if (now > REGISTRATION_END_DATE) {
+                notice.style.display = 'block';
+                notice.style.background = 'linear-gradient(135deg, #f8d7da, #f5c6cb)';
+                notice.style.borderLeftColor = '#dc3545';
+                notice.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 24px;">🔒</span>
+            <div>
+                <strong style="color: #721c24;">報名已截止</strong><br>
+                <span style="font-size: 14px; color: #721c24;">感謝您的關注，本期報名已結束</span>
+            </div>
+        </div>
+        `;
+            } else {
+                notice.style.display = 'none';
+            }
+        }
+
+        // Check remaining course availability
+        async function fetchCourseAvailability() {
+            try {
+                // Determine API base URL
+                const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+                const response = await fetch(`${API_BASE}/api/courses/availability`);
+
+                if (response.ok) {
+                    const availability = await response.json();
+                    updateCourseAvailabilityUI(availability);
+                }
+            } catch (error) {
+                console.error('Failed to fetch availability:', error);
+            }
+        }
+
+        function updateCourseAvailabilityUI(availability) {
+            document.querySelectorAll('#courseList input[type="checkbox"]').forEach(checkbox => {
+                const courseName = checkbox.value;
+                if (availability[courseName] !== undefined) {
+                    const remaining = availability[courseName];
+                    const label = checkbox.closest('label');
+                    const remCountSpan = label.querySelector('.rem-count');
+
+                    if (remCountSpan) {
+                        // Original: (每週1次，1次1小時)
+                        // We will append to it or replace content if needed.
+                        // User wants "剩餘數量". Let's append it clearly.
+
+                        // Check if we already added it (to avoid duplicates if called multiple times)
+                        let qtySpan = label.querySelector('.qty-display');
+                        if (!qtySpan) {
+                            qtySpan = document.createElement('span');
+                            qtySpan.className = 'qty-display';
+                            qtySpan.style.color = '#d93025';
+                            qtySpan.style.fontWeight = 'bold';
+                            qtySpan.style.marginLeft = '8px';
+                            // Insert content after rem-count
+                            remCountSpan.parentNode.insertBefore(qtySpan, remCountSpan.nextSibling);
+                        }
+
+                        qtySpan.textContent = `(剩餘: ${remaining})`;
+
+                        // Optional: Disable if 0
+                        if (remaining <= 0) {
+                            checkbox.disabled = true;
+                            label.style.opacity = '0.6';
+                            qtySpan.textContent = `(已額滿 Full)`;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Run on page load
+        fetchRegistrationTime();
+        fetchCourseAvailability();
+
+        // Toast Notification System
+        function showToast(message, type = 'success', duration = 5000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            const icons = { success: '✅', error: '❌', warning: '⚠️' };
+
+            toast.innerHTML = `
+                <div class="toast-icon">${icons[type] || '📢'}</div>
+                <div class="toast-message">${message}</div>
+                <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+            `;
+
+            container.appendChild(toast);
+
+            // Auto remove after duration
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+
+        // Submit button for new registrations
+        document.getElementById('submitBtn').addEventListener('click', async function () {
+            // Check registration time
+            const now = new Date();
+
+            if (REGISTRATION_START_DATE && now < REGISTRATION_START_DATE) {
+                const daysLeft = Math.ceil((REGISTRATION_START_DATE - now) / (1000 * 60 * 60 * 24));
+                const startStr = REGISTRATION_START_DATE.toLocaleString('zh-TW');
+                showToast(`報名尚未開放\n報名開始時間：${startStr}\n距離開放還有 ${daysLeft} 天`, 'warning', 8000);
+                return;
+            }
+
+            if (REGISTRATION_END_DATE && now > REGISTRATION_END_DATE) {
+                showToast('報名已截止\n感謝您的關注，本期報名已結束', 'error', 8000);
+                return;
+            }
+
+            const name = document.getElementById('studentName').value;
+            const classSelected = document.querySelector('input[name="class"]:checked');
+
+            const selectedCourses = [];
+            document.querySelectorAll('#courseList input[type="checkbox"]:checked').forEach(cb => {
+                selectedCourses.push({
+                    name: cb.value,
+                    price: cb.dataset.price
+                });
+            });
+
+            const selectedSupplies = [];
+            document.querySelectorAll('#suppliesList input[type="checkbox"]:checked').forEach(cb => {
+                selectedSupplies.push({
+                    name: cb.value,
+                    price: cb.dataset.price
+                });
+            });
+
+            if (!name) {
+                showToast('請輸入幼兒姓名\nPlease enter student name.', 'error');
+                return;
+            }
+
+            const payload = {
+                name: name,
+                class: classSelected ? classSelected.value : 'Unspecified',
+                courses: selectedCourses,
+                supplies: selectedSupplies,
+                totalItems: selectedCourses.length + selectedSupplies.length
+            };
+
+            try {
+                // Determine API base URL
+                // If running from file system, use localhost:3000
+                // If running from web server (Render/Localhost server), use relative path
+                const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+
+                const response = await fetch(`${API_BASE}/submit-registration`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showToast('報名成功！\nRegistration Successful!', 'success');
+                    document.querySelector('form').reset();
+                } else {
+                    showToast('報名失敗，請稍後再試。\nRegistration failed. Please try again.', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('伺服器連線錯誤。\nServer connection error.', 'error');
+            }
+        });
+
+        // Video Modal Logic
+        let courseVideos = {};
+
+        async function loadCourseVideos() {
+            try {
+                const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+                const response = await fetch(`${API_BASE}/api/course-videos`);
+                if (response.ok) {
+                    courseVideos = await response.json();
+                    renderVideoButtons();
+                    console.log('Loaded course videos:', courseVideos);
+                }
+            } catch (error) {
+                console.error('Failed to load course videos:', error);
+            }
+        }
+
+        function renderVideoButtons() {
+            document.querySelectorAll('#courseList .course-item').forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const courseName = checkbox.value;
+                const videoUrl = courseVideos[courseName];
+
+                // Remove existing button if any
+                const existingBtn = item.querySelector('.video-btn');
+                if (existingBtn) existingBtn.remove();
+
+                if (videoUrl) {
+                    const btn = document.createElement('button');
+                    btn.className = 'video-btn';
+                    btn.type = 'button'; // Prevent form submission
+                    btn.innerHTML = '▶ 課程介紹';
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation(); // Checkbox prevent default is handled by label click usually, but good to be safe
+                        openVideoModal(courseName, videoUrl);
+                    };
+
+                    // Append to course text
+                    const courseText = item.querySelector('.course-text');
+                    courseText.appendChild(btn);
+                }
+            });
+        }
+
+        function openVideoModal(title, url) {
+            const modal = document.getElementById('videoModal');
+            const videoContainer = document.getElementById('videoContainer');
+            const titleEl = document.getElementById('videoModalTitle');
+
+            titleEl.textContent = title;
+            modal.classList.add('active');
+
+            // Clear previous content
+            videoContainer.innerHTML = '';
+
+            // Check if YouTube
+            let youtubeId = null;
+            if (url.includes('youtube.com/watch?v=')) {
+                youtubeId = url.split('v=')[1].split('&')[0];
+            } else if (url.includes('youtu.be/')) {
+                youtubeId = url.split('youtu.be/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/embed/')) {
+                youtubeId = url.split('embed/')[1].split('?')[0];
+            }
+
+            if (youtubeId) {
+                // Render YouTube Iframe
+                const iframe = document.createElement('iframe');
+                iframe.width = '100%';
+                iframe.height = '450'; // Adjust as needed
+                iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+                iframe.frameBorder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                iframe.style.border = 'none';
+                iframe.style.borderRadius = '8px';
+                iframe.id = 'videoIframe'; // Tracking ID
+                videoContainer.appendChild(iframe);
+            } else {
+                // Render Standard Video
+                const video = document.createElement('video');
+                video.id = 'videoPlayer';
+                video.controls = true;
+                video.autoplay = true;
+                video.style.width = '100%';
+                video.style.borderRadius = '8px';
+                video.src = url;
+
+                // Add default error message
+                video.innerHTML = '您的瀏覽器不支援影片播放';
+
+                videoContainer.appendChild(video);
+
+                try {
+                    video.play();
+                } catch (e) {
+                    console.log('Auto-play blocked:', e);
+                }
+            }
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoContainer = document.getElementById('videoContainer');
+
+            // Clear content to stop playing
+            if (videoContainer) {
+                videoContainer.innerHTML = '';
+            }
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('videoModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Initialize video loading
+        loadCourseVideos();
+    </script>
+</body>
+
+</html>

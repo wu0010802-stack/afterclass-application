@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常春藤課後才藝報名 - 後台管理系統</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <script src="{{ url_for('static', filename='js/lib_xlsx.full.min.js') }}"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Ivy Arts Admin Dashboard</h1>
+        <p>常春藤課後才藝報名管理系統</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal"
+            style="display: none; background: rgba(0,0,0,0.8); align-items: center; justify-content: center;">
+            <div class="modal-content"
+                style="width: 400px; padding: 40px; text-align: center; margin: auto; position: relative; top: 20%;">
+                <h2 style="margin-bottom: 20px;">🔒 請先登入</h2>
+                <form id="loginForm">
+                    <input type="password" id="loginPassword" placeholder="請輸入管理員密碼"
+                        style="width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">確 認</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Registration Time Settings -->
+        <div class="stats-grid">
+            <div class="stat-card" style="grid-column: 1 / -1; display: flex; align-items: center; gap: 20px;">
+                <div style="flex: 1;">
+                    <h3>📅 報名開放時間設定</h3>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+                        <input type="datetime-local" id="registrationStart" class="search-box" style="width: auto;">
+                        <span>至</span>
+                        <input type="datetime-local" id="registrationEnd" class="search-box" style="width: auto;">
+                        <button class="btn btn-primary btn-sm" onclick="saveRegistrationTime()">儲存設定</button>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <h3>目前狀態</h3>
+                    <div id="registrationStatus"
+                        style="margin-top: 10px; padding: 10px; border-radius: 8px; font-weight: bold; text-align: center; display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>總報名人數 (Registrations)</h3>
+                <div class="number" id="totalRegistrations">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>不重複學生 (Unique Students)</h3>
+                <div class="number" id="totalStudents">-</div>
+            </div>
+            <div class="stat-card accent">
+                <h3>總課程人次 (Course Enrollments)</h3>
+                <div class="number" id="totalCourses">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>總代辦品 (Supply Orders)</h3>
+                <div class="number" id="totalSupplies">-</div>
+            </div>
+        </div>
+
+        <!-- Course Capacity Management -->
+        <div class="course-management">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="font-size: 18px; color: var(--text-dark);">📚 課程名額管理 (Course Capacities)</h2>
+                <button class="btn btn-primary btn-sm" onclick="openCourseModal('add')">➕ 新增課程</button>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>課程名稱</th>
+                            <th>價格</th>
+                            <th>堂數</th>
+                            <th>頻率</th>
+                            <th>已報名</th>
+                            <th>總名額 (Capacity)</th>
+                            <th>剩餘</th>
+                            <th>影片</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coursesTableBody">
+                        <tr>
+                            <td colspan="9" class="loading">載入中...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 搜尋學生姓名或班級...">
+            </div>
+            <div style="display:flex; gap:10px;">
+                <button class="btn btn-secondary" onclick="exportDataCSV()">📄 匯出 CSV</button>
+                <button class="btn btn-primary" style="background-color: #217346;" onclick="exportDataExcel()">📊 匯出
+                    Excel</button>
+                <button class="btn btn-danger" onclick="logout()">🚪 登出</button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>學生姓名</th>
+                        <th>班級</th>
+                        <th>課程數</th>
+                        <th>用品數</th>
+                        <th>繳費狀態</th>
+                        <th>報名時間</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="8" class="loading">載入中...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📝 報名詳細資料</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Edit/Add Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="courseModalTitle">✏️ 編輯課程</h2>
+                <button class="modal-close" onclick="closeCourseModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="courseForm">
+                    <input type="hidden" id="courseId">
+                    <div class="detail-row">
+                        <div class="detail-label">課程名稱</div>
+                        <div class="detail-value">
+                            <input type="text" id="courseName" class="search-box" style="width: 100%;" required>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">價格</div>
+                        <div class="detail-value">
+                            <input type="number" id="coursePrice" class="search-box" style="width: 100%;" required>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">堂數</div>
+                        <div class="detail-value">
+                            <input type="number" id="courseSessions" class="search-box" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">頻率 (描述)</div>
+                        <div class="detail-value">
+                            <input type="text" id="courseFrequency" class="search-box" style="width: 100%;"
+                                placeholder="例如：每週1次，1次1小時">
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">名額 (Capacity)</div>
+                        <div class="detail-value">
+                            <input type="number" id="courseCapacity" class="search-box" style="width: 100%;" value="30">
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">影片連結 (URL)</div>
+                        <div class="detail-value">
+                            <input type="text" id="courseVideoUrl" class="search-box" style="width: 100%;"
+                                placeholder="YouTube 或 MP4 連結">
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">說明</div>
+                        <div class="detail-value">
+                            <textarea id="courseDescription" class="search-box"
+                                style="width: 100%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">取消</button>
+                        <button type="submit" class="btn btn-primary">儲存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 10px;">⚠️</div>
+            <h3 id="confirmTitle" style="margin-bottom: 10px;">確認刪除？</h3>
+            <p id="confirmMessage" style="color: #666; margin-bottom: 20px;">此操作無法復原</p>
+            <div class="form-actions" style="justify-content: center; display: flex; gap: 10px;">
+                <button class="btn btn-secondary" onclick="closeConfirmModal()">取消</button>
+                <button id="confirmBtn" class="btn btn-danger">確定刪除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+</body>
+
+</html>
